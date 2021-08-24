@@ -1,7 +1,10 @@
 import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
-import Screen from '../../components/Screen'
+import { StyleSheet, Text, View, Dimensions} from 'react-native'
 
+//Componentes
+import Screen from '../../components/Screen'
+//CSS
+import {styles} from './styles'
 //Imports para usar MAPA do Google
 import MapView from 'react-native-maps';
 import * as Location from 'expo-location'
@@ -16,6 +19,7 @@ const index = () => {
         longitudeDelta: 0.014
       })
 
+    // Função para pedir ao usuário permissão para acessar a localização
     const obterLocalizacao = async () => {
         try {
             const { granted } = await Location.requestForegroundPermissionsAsync();
@@ -28,20 +32,25 @@ const index = () => {
             const { coords: { latitude, longitude } } = await Location.getCurrentPositionAsync()
             setLocation({ latitude, longitude, latitudeDelta: 0.014, longitudeDelta: 0.014 })
         } catch (e) {
-            console.log(e)
+           alert(e.message)
         }
 
     }
 
+    React.useEffect(() => {
+        obterLocalizacao()
+    },[])
+
     return (
         <Screen>
-           <View>
+            {
+                location && <MapView showsUserLocation={true} initialRegion={location} style={styles.map} >
 
-           </View>
+                </MapView>
+            }
         </Screen>
     )
 }
 
 export default index
 
-const styles = StyleSheet.create({})
