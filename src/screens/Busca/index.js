@@ -6,11 +6,13 @@ import axios from 'axios'
 import Botao from '../../components/Botao'
 import Input from '../../components/Input'
 import Screen from '../../components/Screen'
-import colors from '../../configs/colors'
+import Informacoes from '../../components/Informacoes'
+
 
 const index = () => {
 
     const [cepBuscado, setCepBuscado] = React.useState(null)
+    const [local, setLocal] = React.useState(null)
 
     const buscarCEP = async (CEP) => {
         try {
@@ -20,7 +22,7 @@ const index = () => {
                 const {data} = await axios.get(url)
                 
                 if(data){
-                    setCepBuscado(data)
+                    setLocal(data)
                 }
             }else{
                 Alert.alert("Erro","Por favor, digite um CEP")
@@ -33,13 +35,16 @@ const index = () => {
 
     return (
         <Screen style={{backgroundColor: "#252525"}}>
-            <View style={{height: '100%', justifyContent: 'space-between'}}>
+            <View style={{height: '100%'}}>
                 <Input value={cepBuscado} placeholder='Digite o CEP' setCepBuscado={setCepBuscado}/>
                 
-                
+                {
+                 local && <Informacoes local={local}/>
+                }
+
                 
                 {/* Componente Botão */}
-                <Botao titulo="Buscar" onPress={() => buscarCEP(cepBuscado)} containerStyle={{marginBottom: 32}}/> 
+                <Botao titulo="Buscar" onPress={() => buscarCEP(cepBuscado)} containerStyle={{position: 'absolute', bottom: 24, alignSelf: 'center'}}/> 
             </View>
         </Screen>
     )
@@ -47,4 +52,6 @@ const index = () => {
 
 export default index
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+   
+})

@@ -22,7 +22,7 @@ export default Input
 
 const styles = StyleSheet.create({
     container: {
-        width: '70%',
+        width: '90%',
         height: 45,
         borderWidth: 1,
         borderRadius: 7,
