@@ -15,6 +15,8 @@ const Informacoes = ({local}) => {
     const [favoritou, setFavoritou] = React.useState(false)
     const {CEPS, setCEPS} = React.useContext(DadosContext)
 
+
+
     const agirSobreOLocal = () => {
         setFavoritou(!favoritou)
         
@@ -25,6 +27,10 @@ const Informacoes = ({local}) => {
             setCEPS([...CEPS.filter(lugar => lugar !== local)])
         }
     }
+
+    React.useEffect(() => {
+
+    }, [local])
 
     return (
         <View style={{marginHorizontal: 18, marginVertical: '20%', borderRadius: 10, overflow: 'hidden'}}>
