@@ -9,10 +9,20 @@ import Screen from './src/components/Screen';
 //Rotas
 import TabScreen from './src/routes/routes'
 
+//Contexto para compartilhar os dados entre as telas filhas ..
+import {DadosContext} from './src/DadosContext'
+
 export default function App() {
+  
+  // Vetor de CEPS favoritados 
+  const [CEPS, setCEPS] = React.useState([])
+  
   return (
-   <NavigationContainer>
-     <TabScreen/>
-   </NavigationContainer>
+  <DadosContext.Provider value={{CEPS, setCEPS}}>
+      <NavigationContainer>
+        <TabScreen/>
+      </NavigationContainer>
+  </DadosContext.Provider>
+
   );
 }

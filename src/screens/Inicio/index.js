@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet, Text, View, Dimensions} from 'react-native'
+import { StyleSheet, Text, View, Dimensions, Button} from 'react-native'
 
 //Componentes
 import Screen from '../../components/Screen'
@@ -41,13 +41,19 @@ const index = () => {
         obterLocalizacao()
     },[])
 
+    const obterCoordenada = async (Logradouro) => {
+       const resposta = await Location.geocodeAsync(Logradouro)
+       console.log(resposta)
+    }
+
     return (
         <Screen>
-            {
-                location && <MapView showsUserLocation={true} initialRegion={location} style={styles.map} >
-
-                </MapView>
-            }
+            {location && <MapView showsUserLocation={true} initialRegion={location} style={styles.map} /> }
+            
+            {/* Botões em cima do mapa */}
+            <View style={{position: 'absolute', bottom: 100, right: 20}}>
+                    <Button title='Buscar' onPress={() => obterCoordenada("Avenida Teresina")}/>
+            </View>
         </Screen>
     )
 }

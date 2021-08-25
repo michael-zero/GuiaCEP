@@ -4,7 +4,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 //Telas 
 import Inicio from '../screens/Inicio/index'
-import Listagem from '../screens/Listagem/index'
+import Listagem from '../screens/Busca/index'
 
 //Icones
 import { MaterialIcons } from '@expo/vector-icons'
