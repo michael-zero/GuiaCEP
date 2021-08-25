@@ -5,24 +5,40 @@ import { Pressable, StyleSheet, Text, View } from 'react-native'
 import colors from '../configs/colors'
 
 //Icones
-import { MaterialIcons } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
+
+//Contexto
+import {DadosContext} from '../DadosContext'
 
 const Informacoes = ({local}) => {
 
     const [favoritou, setFavoritou] = React.useState(false)
+    const {CEPS, setCEPS} = React.useContext(DadosContext)
+
+    const agirSobreOLocal = () => {
+        setFavoritou(!favoritou)
+        
+        // Estou favoritando
+        if(favoritou === false){
+            setCEPS([...CEPS, local])
+        }else{ //Processo de desfavoritar e remover do contexto
+            setCEPS([...CEPS.filter(lugar => lugar !== local)])
+        }
+    }
 
     return (
         <View style={{marginHorizontal: 18, marginVertical: '20%', borderRadius: 10, overflow: 'hidden'}}>
 
-                        <View style={{alignItems: 'center', backgroundColor: 'white', flexDirection: 'row', justifyContent: 'space-around', height: 40}}>
+
+                       <View style={{alignItems: 'center', backgroundColor: 'white', flexDirection: 'row', justifyContent: 'space-around', height: 40}}>
                             <Text style={[styles.titulo, {fontSize: 20}]}>Informações do Local</Text>
-                            <Pressable onPress={() => setFavoritou(!favoritou)}>
+                            <Pressable onPress={() => agirSobreOLocal()}>
                                 {
-                                    favoritou ? 
-                                        <Ionicons name="save" size={24} color={colors.amarelo} />
-                                        :
+                                    favoritou === false ? 
                                         <Ionicons name="save-outline" size={24} color="black" />
+                                        :
+                                        <Ionicons name="save" size={24} color={colors.amarelo} />
+
 
 
                                 }

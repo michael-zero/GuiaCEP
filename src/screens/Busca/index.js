@@ -8,11 +8,25 @@ import Input from '../../components/Input'
 import Screen from '../../components/Screen'
 import Informacoes from '../../components/Informacoes'
 
+//Contexto
+import { DadosContext } from '../../DadosContext'
 
 const index = () => {
 
     const [cepBuscado, setCepBuscado] = React.useState(null)
-    const [local, setLocal] = React.useState(null)
+    const {CEPS, setCEPS} = React.useContext(DadosContext)
+    const [local, setLocal] = React.useState({
+        "bairro": "Parque Piauí I",
+        "cep": "65631-205",
+        "complemento": "de 2 a 2988 - lado par",
+        "ddd": "99",
+        "gia": "",
+        "ibge": "2112209",
+        "localidade": "Timon",
+        "logradouro": "Avenida Teresina",
+        "siafi": "0937",
+        "uf": "MA",
+      })
 
     const buscarCEP = async (CEP) => {
         try {
@@ -37,7 +51,10 @@ const index = () => {
         <Screen style={{backgroundColor: "#252525"}}>
             <View style={{height: '100%'}}>
                 <Input value={cepBuscado} placeholder='Digite o CEP' setCepBuscado={setCepBuscado}/>
-                
+               
+                <View style={{backgroundColor: 'white', height: 35, justifyContent: 'center'}}>
+                    <Text style={{fontSize: 16}}>CEPS favoritados {CEPS.length} </Text>
+                </View>
                 {
                  local && <Informacoes local={local}/>
                 }
