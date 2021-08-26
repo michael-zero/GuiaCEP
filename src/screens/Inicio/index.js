@@ -62,13 +62,13 @@ const index = ({navigation}) => {
             </MapView> : 
             
             
-            (<View style={{ width: '100%', height: '100%', justifyContent: 'center', alignItems: 'center'}}>
+            (<View style={styles.containerLoading}>
                       <ActivityIndicator size="large" color={"#252525"} />
                     </View>)
             }
             
                {/* Botão em cima do mapa */}
-              { location &&  <View style={{position: 'absolute', alignItems: 'center', justifyContent: 'center', backgroundColor: '#252525', bottom: 80, right: 20, width: 45, height: 45, borderRadius: 25}}>
+              { location &&  <View style={styles.containerBTN}>
                         <MaterialIcons onPress={() => navigation.navigate("Listagem")} name="list" size={40} color={colors.azul} />
                 </View>}
 
