@@ -70,8 +70,18 @@ const index = ({navigation}) => {
         }
     }
 
+
+    // Evento ao sair da tela
+    React.useEffect(() => navigation.addListener('blur', (e) => {
+        setLocal(null)
+        setCepBuscado(null)
+    }),[])
+
     React.useEffect(() => {
+    
     }, [local])
+
+
 
     return (
         <Screen style={{backgroundColor: colors.azul }}>

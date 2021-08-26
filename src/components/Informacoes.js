@@ -12,12 +12,11 @@ import {DadosContext} from '../DadosContext'
 
 import { obterCoordenada } from '../configs/permissoes';
 
-const Informacoes = ({local, jaFavoritou}) => {
+const Informacoes = ({local, jaFavoritou, containerStyle}) => {
 
     const [favoritou, setFavoritou] = React.useState(jaFavoritou)
 
-    const [coordenadaDoFavoritado, setCoordenadaDoFavoritado] = React.useState(null)
-    const {CEPS, setCEPS,coordFavoritados, setCoordFavoritados} = React.useContext(DadosContext)
+    const {CEPS, setCEPS,coordFavoritados, setCoordFavoritados, coordenadaDoFavoritado, setCoordenadaDoFavoritado} = React.useContext(DadosContext)
 
     const agirSobreOLocal = () => {
         setFavoritou(!favoritou)
@@ -42,7 +41,7 @@ const Informacoes = ({local, jaFavoritou}) => {
     }, [local])
 
     return (
-        <View style={{marginHorizontal: 18, marginVertical: '20%', borderRadius: 10, overflow: 'hidden'}}>
+        <View style={[{marginHorizontal: 18, marginVertical: '20%', borderRadius: 10, overflow: 'hidden'}, containerStyle]}>
 
 
                        <View style={{alignItems: 'center', backgroundColor: 'white', flexDirection: 'row', justifyContent: 'space-around', height: 40}}>
