@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet, Text, View, Dimensions, Button, TouchableOpacity} from 'react-native'
+import { StyleSheet, Text, View, Dimensions, Button, TouchableOpacity, ActivityIndicator} from 'react-native'
 
 //Componentes
 import Screen from '../../components/Screen'
@@ -50,8 +50,8 @@ const index = ({navigation}) => {
     // console.log(coordFavoritados);
 
     return (
-        <Screen>
-            {location && <MapView showsUserLocation={true} initialRegion={location} style={styles.map}>
+        <Screen style={{ backgroundColor: colors.azul}}>
+            {location ? <MapView showsUserLocation={true} initialRegion={location} style={styles.map}>
 
                
 
@@ -59,12 +59,18 @@ const index = ({navigation}) => {
                     console.log(coordenada)
                  return <Marker pinColor={colors.azul} key={coordenada.latitude} coordinate={coordenada}/>}) 
                  }
-            </MapView> }
+            </MapView> : 
             
-            {/* Botões em cima do mapa */}
-                <View style={{position: 'absolute', alignItems: 'center', justifyContent: 'center', backgroundColor: '#252525', bottom: 80, right: 20, width: 50, height: 50, borderRadius: 25}}>
+            
+            (<View style={{ width: '100%', height: '100%', justifyContent: 'center', alignItems: 'center'}}>
+                      <ActivityIndicator size="large" color={"#252525"} />
+                    </View>)
+            }
+            
+               {/* Botão em cima do mapa */}
+              { location &&  <View style={{position: 'absolute', alignItems: 'center', justifyContent: 'center', backgroundColor: '#252525', bottom: 80, right: 20, width: 45, height: 45, borderRadius: 25}}>
                         <MaterialIcons onPress={() => navigation.navigate("Listagem")} name="list" size={40} color={colors.azul} />
-                </View>
+                </View>}
 
             
 

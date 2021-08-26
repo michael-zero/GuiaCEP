@@ -7,6 +7,7 @@ import Botao from '../../components/Botao'
 import Input from '../../components/Input'
 import Screen from '../../components/Screen'
 import Informacoes from '../../components/Informacoes'
+import Header from '../../components/Header'
 
 //Contexto
 import { DadosContext } from '../../DadosContext'
@@ -85,8 +86,9 @@ const index = ({navigation}) => {
 
     return (
         <Screen style={{backgroundColor: colors.azul }}>
+            <Header titulo='Buscar CEP' navigation={navigation}/>
             <View style={{height: '100%'}}>
-                <Input querIconeLimpeza={true} value={cepBuscado} placeholder='Digite um CEP' setCepBuscado={setCepBuscado}/>
+                <Input querIconeLimpeza={true} setLocal={setLocal} value={cepBuscado} placeholder='Digite um CEP' setCepBuscado={setCepBuscado}/>
                
                {/* Botão do favoritado */}
                <TouchableOpacity onPress={() => navigation.navigate("Listagem")}>
@@ -100,7 +102,7 @@ const index = ({navigation}) => {
                 }
 
                 {/* Componente Botão */}
-                <Botao titulo="Buscar" onPress={() => buscarCEP(cepBuscado)} containerStyle={{position: 'absolute', bottom: 24, alignSelf: 'center'}}/> 
+                <Botao titulo="Buscar" onPress={() => buscarCEP(cepBuscado)} containerStyle={{position: 'absolute', bottom: 100, alignSelf: 'center'}}/> 
             </View>
         </Screen>
     )
