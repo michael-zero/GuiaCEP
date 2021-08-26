@@ -18,6 +18,7 @@ import { MaterialIcons } from '@expo/vector-icons';
 import { obterCoordenada } from '../../configs/permissoes';
 import colors from '../../configs/colors';
 
+import Header from '../../components/Header'
 
 const index = ({navigation}) => {
 
@@ -51,6 +52,9 @@ const index = ({navigation}) => {
 
     return (
         <Screen style={{ backgroundColor: colors.azul}}>
+
+            <Header titulo='Guia me' querIconeVoltar={false}/>
+
             {location ? <MapView showsUserLocation={true} initialRegion={location} style={styles.map}>
 
                

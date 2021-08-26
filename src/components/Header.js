@@ -4,17 +4,20 @@ import { MaterialIcons } from '@expo/vector-icons';
 import colors from '../configs/colors'
 
 
-const Header = ({ titulo, navigation }) => {
+const Header = ({ titulo, querIconeVoltar=true, navigation }) => {
     return (
         <View style={styles.container}>
-            <TouchableOpacity onPress={() => navigation.goBack()}>
                 <View style={styles.subcontainer}>
-                    <MaterialIcons name="keyboard-arrow-left" size={30} color={colors.azul} />
+                    { querIconeVoltar &&
+                    <TouchableOpacity onPress={() => navigation.goBack()}>
+                        <View style={{width: 40}}>
+                            <MaterialIcons name="keyboard-arrow-left" size={30} color={colors.azul} />
+                        </View>
+                    </TouchableOpacity>}
                     <View style={{ alignItems: 'center', width: '100%', marginLeft: -25 }}>
                         <Text style={styles.texto}>{titulo}</Text>
                     </View>
                 </View>
-            </TouchableOpacity>
         </View>
     )
 }
