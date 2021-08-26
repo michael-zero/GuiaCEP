@@ -66,7 +66,7 @@ const Informacoes = ({local, jaFavoritou, containerStyle}) => {
 
                         {/* Coluna CHAVES */}
                             <View style={{ width: '40%'}}>
-                                <View style={[styles.subContainer, {backgroundColor: "lightgray"}]}>
+                                <View style={[styles.subContainer, {backgroundColor: colors.azulClaro}]}>
                                     <Text style={styles.titulo}>Estado</Text>
                                 </View>
 
@@ -74,7 +74,7 @@ const Informacoes = ({local, jaFavoritou, containerStyle}) => {
                                     <Text style={styles.titulo}>Cidade</Text>
                                 </View>
 
-                                <View style={[styles.subContainer,{backgroundColor: "lightgray"}]}>
+                                <View style={[styles.subContainer,{backgroundColor: colors.azulClaro}]}>
                                     <Text style={styles.titulo}>Bairro</Text>
                                 </View>
 
@@ -85,14 +85,14 @@ const Informacoes = ({local, jaFavoritou, containerStyle}) => {
 
                             {/* COLUNA VALORES */}
                             <View style={{flex: 1}}>
-                                <View style={[styles.subContainer, {backgroundColor: "lightgray"}]}>
+                                <View style={[styles.subContainer, {backgroundColor: colors.azulClaro}]}>
                                     <Text style={styles.texto}>{local.uf}</Text>
                                 </View>
 
                                 <View style={[styles.subContainer]}>
                                     <Text style={styles.titulo}>{local.localidade}</Text>
                                 </View>
-                                <View style={[styles.subContainer,{backgroundColor: "lightgray"}]}>
+                                <View style={[styles.subContainer,{backgroundColor: colors.azulClaro}]}>
                                     <Text style={styles.texto}>{local.bairro}</Text>
                                 </View>
 
