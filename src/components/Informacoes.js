@@ -6,7 +6,7 @@ import colors from '../configs/colors'
 
 //Icones
 import { Ionicons } from '@expo/vector-icons';
-
+import { AntDesign } from '@expo/vector-icons';
 //Contexto
 import {DadosContext} from '../DadosContext'
 
@@ -50,9 +50,11 @@ const Informacoes = ({local, jaFavoritou}) => {
                             <Pressable onPress={() => agirSobreOLocal()}>
                                 {
                                     !favoritou ? 
-                                        <Ionicons name="save-outline" size={24} color="black" />
+                                        // <Ionicons name="save-outline" size={24} color="black" />
+                                        <AntDesign name="hearto" size={24} color="black" />
                                         :
-                                        <Ionicons name="save" size={24} color={colors.amarelo} />
+                                        // <Ionicons name="save" size={24} color={colors.azul} />
+                                        <AntDesign name="heart" size={24} color="red" />
 
 
 

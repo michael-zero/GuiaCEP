@@ -11,8 +11,7 @@ import { MaterialIcons } from '@expo/vector-icons'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 
 //Configs
-import {colors} from '../configs/colors'
-
+import colors from '../configs/colors';
 const Tab = createBottomTabNavigator();
 
 
@@ -36,7 +35,7 @@ const TabScreen = () => {
            }
           return <Ionicons name={iconName} size={size} color={color} />;
         },
-        tabBarActiveTintColor: "yellow",
+        tabBarActiveTintColor: colors.azul,
         tabBarInactiveTintColor: "white",
       })}
     >

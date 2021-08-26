@@ -73,14 +73,14 @@ const index = () => {
     React.useEffect(() => {
     }, [local])
 
-
+// "#252525"
     return (
-        <Screen style={{backgroundColor: "#252525"}}>
+        <Screen style={{backgroundColor: colors.azul }}>
             <View style={{height: '100%'}}>
                 <Input value={cepBuscado} placeholder='Digite o CEP' setCepBuscado={setCepBuscado}/>
                
-                <View style={{ marginHorizontal: 20, height: 35, justifyContent: 'center'}}>
-                    <Text style={{fontSize: 16, color: colors.amarelo}}>CEPS favoritados {CEPS.length} </Text>
+                <View style={{ marginHorizontal: 22, height: 35, justifyContent: 'center'}}>
+                    <Text style={{fontSize: 16, color: "#252525"}}>Favoritados({CEPS.length})</Text>
                 </View>
                 {
                  local && <Informacoes local={local} jaFavoritou={jaFavoritou}/>
