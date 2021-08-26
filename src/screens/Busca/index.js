@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Dimensions, StyleSheet, Text, View, Alert } from 'react-native'
+import { Button, Dimensions, StyleSheet, Text, View, Alert, TouchableOpacity } from 'react-native'
 import axios from 'axios'
 
 //Componentes
@@ -13,7 +13,7 @@ import { DadosContext } from '../../DadosContext'
 import colors from '../../configs/colors'
 
 
-const index = () => {
+const index = ({navigation}) => {
 
     const [cepBuscado, setCepBuscado] = React.useState(null)
     const {CEPS, setCEPS} = React.useContext(DadosContext)
@@ -73,15 +73,18 @@ const index = () => {
     React.useEffect(() => {
     }, [local])
 
-// "#252525"
     return (
         <Screen style={{backgroundColor: colors.azul }}>
             <View style={{height: '100%'}}>
-                <Input value={cepBuscado} placeholder='Digite o CEP' setCepBuscado={setCepBuscado}/>
+                <Input querIconeLimpeza={true} value={cepBuscado} placeholder='Digite um CEP' setCepBuscado={setCepBuscado}/>
                
-                <View style={{ marginHorizontal: 22, height: 35, justifyContent: 'center'}}>
-                    <Text style={{fontSize: 16, color: "#252525"}}>Favoritados({CEPS.length})</Text>
-                </View>
+               {/* Botão do favoritado */}
+               <TouchableOpacity onPress={() => navigation.navigate("Listagem")}>
+                    <View style={{ marginHorizontal: 22, height: 35, justifyContent: 'center'}}>
+                        <Text style={{fontSize: 16, color: "#252525"}}>Favoritados({CEPS.length})</Text>
+                    </View>
+               </TouchableOpacity>
+
                 {
                  local && <Informacoes local={local} jaFavoritou={jaFavoritou}/>
                 }

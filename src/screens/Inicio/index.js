@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet, Text, View, Dimensions, Button} from 'react-native'
+import { StyleSheet, Text, View, Dimensions, Button, TouchableOpacity} from 'react-native'
 
 //Componentes
 import Screen from '../../components/Screen'
@@ -12,10 +12,14 @@ import * as Location from 'expo-location'
 //Contexto
 import { DadosContext } from '../../DadosContext';
 
+//Icones
+import { MaterialIcons } from '@expo/vector-icons';
+
 import { obterCoordenada } from '../../configs/permissoes';
+import colors from '../../configs/colors';
 
 
-const index = () => {
+const index = ({navigation}) => {
 
     const {CEPS, setCEPS,coordFavoritados, setCoordFavoritados} = React.useContext(DadosContext)
 
@@ -43,7 +47,7 @@ const index = () => {
         obterLocalizacao()
     },[])
 
-    console.log(coordFavoritados);
+    // console.log(coordFavoritados);
 
     return (
         <Screen>
@@ -53,14 +57,17 @@ const index = () => {
 
                  { coordFavoritados &&  coordFavoritados.map(coordenada => {
                     console.log(coordenada)
-                 return <Marker key={coordenada.latitude} coordinate={coordenada}/>}) 
+                 return <Marker pinColor={colors.azul} key={coordenada.latitude} coordinate={coordenada}/>}) 
                  }
             </MapView> }
             
             {/* Botões em cima do mapa */}
-            <View style={{position: 'absolute', bottom: 100, right: 20}}>
-                    <Button title='Buscar' onPress={() => obterCoordenada("Avenida Teresina")}/>
-            </View>
+                <View style={{position: 'absolute', alignItems: 'center', justifyContent: 'center', backgroundColor: '#252525', bottom: 80, right: 20, width: 50, height: 50, borderRadius: 25}}>
+                        <MaterialIcons onPress={() => navigation.navigate("Listagem")} name="list" size={40} color={colors.azul} />
+                </View>
+
+            
+
         </Screen>
     )
 }
