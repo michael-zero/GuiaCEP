@@ -10,16 +10,19 @@ import { Ionicons } from '@expo/vector-icons';
 //Contexto
 import {DadosContext} from '../DadosContext'
 
+import { obterCoordenada } from '../configs/permissoes';
+
 const Informacoes = ({local, jaFavoritou}) => {
 
     const [favoritou, setFavoritou] = React.useState(jaFavoritou)
-    const {CEPS, setCEPS} = React.useContext(DadosContext)
+    const {CEPS, setCEPS,coordFavoritados, setCoordFavoritados} = React.useContext(DadosContext)
 
     const agirSobreOLocal = () => {
         setFavoritou(!favoritou)
         
         // Estou favoritando
         if(!favoritou){
+            obterCoordenada(local.logradouro).then(res => setCoordFavoritados([...coordFavoritados, res]))
             setCEPS([...CEPS, local])
         }else{ //Processo de desfavoritar e remover do contexto
             setCEPS([...CEPS.filter(lugar => lugar !== local)])

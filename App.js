@@ -16,9 +16,10 @@ export default function App() {
   
   // Vetor de CEPS favoritados 
   const [CEPS, setCEPS] = React.useState([])
+  const [coordFavoritados, setCoordFavoritados] = React.useState([])
   
   return (
-  <DadosContext.Provider value={{CEPS, setCEPS}}>
+  <DadosContext.Provider value={{CEPS, setCEPS, coordFavoritados, setCoordFavoritados}}>
       <NavigationContainer>
         <TabScreen/>
       </NavigationContainer>

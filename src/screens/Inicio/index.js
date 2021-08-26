@@ -6,18 +6,20 @@ import Screen from '../../components/Screen'
 //CSS
 import {styles} from './styles'
 //Imports para usar MAPA do Google
-import MapView from 'react-native-maps';
+import MapView, { Marker } from 'react-native-maps';
 import * as Location from 'expo-location'
+
+//Contexto
+import { DadosContext } from '../../DadosContext';
+
+import { obterCoordenada } from '../../configs/permissoes';
 
 
 const index = () => {
 
-    const [location, setLocation] = React.useState({//Região inicial -Antes de carregar a localizacao do usuario - Centro de Teresina
-        latitude: -5.0903678,
-        longitude: -42.8105988,
-        latitudeDelta: 0.014,
-        longitudeDelta: 0.014
-      })
+    const {CEPS, setCEPS,coordFavoritados, setCoordFavoritados} = React.useContext(DadosContext)
+
+    const [location, setLocation] = React.useState()
 
     // Função para pedir ao usuário permissão para acessar a localização
     const obterLocalizacao = async () => {
@@ -41,14 +43,19 @@ const index = () => {
         obterLocalizacao()
     },[])
 
-    const obterCoordenada = async (Logradouro) => {
-       const resposta = await Location.geocodeAsync(Logradouro)
-       console.log(resposta)
-    }
+    console.log(coordFavoritados);
 
     return (
         <Screen>
-            {location && <MapView showsUserLocation={true} initialRegion={location} style={styles.map} /> }
+            {location && <MapView showsUserLocation={true} initialRegion={location} style={styles.map}>
+
+               
+
+                 { coordFavoritados &&  coordFavoritados.map(coordenada => {
+                    console.log(coordenada)
+                 return <Marker key={coordenada.latitude} coordinate={coordenada}/>}) 
+                 }
+            </MapView> }
             
             {/* Botões em cima do mapa */}
             <View style={{position: 'absolute', bottom: 100, right: 20}}>
