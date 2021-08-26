@@ -18,22 +18,34 @@ const index = () => {
     const {CEPS, setCEPS} = React.useContext(DadosContext)
     const [local, setLocal] = React.useState(null)
     
-    // Exemplo
-    // {
-    //     "bairro": "Parque Piauí I",
-    //     "cep": "65631-205",
-    //     "complemento": "de 2 a 2988 - lado par",
-    //     "ddd": "99",
-    //     "gia": "",
-    //     "ibge": "2112209",
-    //     "localidade": "Timon",
-    //     "logradouro": "Avenida Teresina",
-    //     "siafi": "0937",
-    //     "uf": "MA",
-    //   }
+    const [jaFavoritou, setJaFavoritou] = React.useState(null)
+   
+
+    const verificarSeJaEstaFavoritado = (cep) => {
+        if(CEPS.length === 0) return false
+
+        let resposta = CEPS.find(local => {
+            let limpaCEP = local.cep.replace("-","")
+            return limpaCEP === cep
+        })
+        
+        if(resposta){
+            setLocal(resposta)
+            setJaFavoritou(true)
+            return true
+        }
+    }
 
     const buscarCEP = async (CEP) => {
         try {
+
+            if(verificarSeJaEstaFavoritado(CEP)){
+                setJaFavoritou(true)
+                return
+            }else{
+                setJaFavoritou(false)
+            }
+
              if(CEP){
 
                 let url = `https://viacep.com.br/ws/${CEP}/json/`
@@ -57,6 +69,9 @@ const index = () => {
         }
     }
 
+    React.useEffect(() => {
+    }, [local])
+
 
     return (
         <Screen style={{backgroundColor: "#252525"}}>
@@ -67,10 +82,9 @@ const index = () => {
                     <Text style={{fontSize: 16, color: colors.amarelo}}>CEPS favoritados {CEPS.length} </Text>
                 </View>
                 {
-                 local && <Informacoes local={local}/>
+                 local && <Informacoes local={local} jaFavoritou={jaFavoritou}/>
                 }
 
-                
                 {/* Componente Botão */}
                 <Botao titulo="Buscar" onPress={() => buscarCEP(cepBuscado)} containerStyle={{position: 'absolute', bottom: 24, alignSelf: 'center'}}/> 
             </View>

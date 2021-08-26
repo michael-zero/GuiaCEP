@@ -10,18 +10,16 @@ import { Ionicons } from '@expo/vector-icons';
 //Contexto
 import {DadosContext} from '../DadosContext'
 
-const Informacoes = ({local}) => {
+const Informacoes = ({local, jaFavoritou}) => {
 
-    const [favoritou, setFavoritou] = React.useState(false)
+    const [favoritou, setFavoritou] = React.useState(jaFavoritou)
     const {CEPS, setCEPS} = React.useContext(DadosContext)
-
-
 
     const agirSobreOLocal = () => {
         setFavoritou(!favoritou)
         
         // Estou favoritando
-        if(favoritou === false){
+        if(!favoritou){
             setCEPS([...CEPS, local])
         }else{ //Processo de desfavoritar e remover do contexto
             setCEPS([...CEPS.filter(lugar => lugar !== local)])
@@ -29,7 +27,7 @@ const Informacoes = ({local}) => {
     }
 
     React.useEffect(() => {
-
+        setFavoritou(jaFavoritou)
     }, [local])
 
     return (
@@ -40,7 +38,7 @@ const Informacoes = ({local}) => {
                             <Text style={[styles.titulo, {fontSize: 20}]}>Informações do Local</Text>
                             <Pressable onPress={() => agirSobreOLocal()}>
                                 {
-                                    favoritou === false ? 
+                                    !favoritou ? 
                                         <Ionicons name="save-outline" size={24} color="black" />
                                         :
                                         <Ionicons name="save" size={24} color={colors.amarelo} />
