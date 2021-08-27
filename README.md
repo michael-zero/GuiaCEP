@@ -6,4 +6,4 @@ Aplicação para guardar endereços de cada CEP cadastrado. E poder gerar um mar
 
 Na raiz do projeto, execute o seguinte comando: 
 
-`npm install`
+```npm install```
