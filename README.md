@@ -2,12 +2,13 @@
 
 Aplicação para guardar endereços de cada CEP cadastrado. E poder gerar um marcador no mapa com as coordenadas dos endereços favoritados. 
 
-## Instalação das dependências
 
+# Instalar Dependências
 Na raiz do projeto, execute o seguinte comando: 
 
 `npm install`
 
+# Executar o projeto
 Para **Executar**, execute o comando: 
 
 `expo start`
