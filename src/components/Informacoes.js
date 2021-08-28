@@ -19,7 +19,8 @@ const Informacoes = ({local, jaFavoritou, containerStyle}) => {
     const {CEPS, setCEPS} = React.useContext(DadosContext)
 
     const agirSobreOLocal = () => {
-        setFavoritou(!favoritou)
+
+        // setFavoritou(!favoritou)
         
         // Estou favoritando
         if(!favoritou){
@@ -28,10 +29,20 @@ const Informacoes = ({local, jaFavoritou, containerStyle}) => {
                     Alert.alert("Erro", "Não foi possível obter a coordenada, mas o local foi salvo!")
                 }
                 setCEPS([...CEPS, {local: local, coordenada: res}])
+                setFavoritou(!favoritou)
+
 
             })
         }else{ //Processo de desfavoritar e remover do contexto
-            setCEPS([...CEPS.filter(lugar => lugar.local !== local)])
+            Alert.alert('Deletar','Tem certeza que deseja remover dos favoritos?', [
+                {text: 'Não'}, 
+                {text: 'Sim', onPress: () =>  { 
+                    setFavoritou(!favoritou)
+                    
+                    setCEPS([...CEPS.filter(lugar => lugar.local !== local)])}} 
+            ])
+           
+           
         }
     }
 
