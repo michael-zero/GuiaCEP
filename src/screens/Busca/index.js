@@ -66,7 +66,12 @@ const index = ({navigation}) => {
             }
 
         } catch (error) {
-            Alert.alert("Erro", error.message)
+             if(error.message === 'Request failed with status code 400'){
+                 Alert.alert("CEP inválido","Digite um CEP válido!")
+             }else{
+                Alert.alert("Erro", error.message)
+             }
+            
         }
     }
 
