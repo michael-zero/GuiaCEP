@@ -32,14 +32,16 @@ const styles = StyleSheet.create({
     container: {
         width: '90%',
         height: 45,
-        borderWidth: 1,
         borderRadius: 7,
         alignItems: 'center',
         flexDirection: 'row',
         alignSelf: 'center',
         marginVertical: 16,
         paddingHorizontal: 6,
-        backgroundColor: 'white'
+        backgroundColor: 'white',
+
+        elevation: 35,
+        
     },
     input: {
         flex: 1,

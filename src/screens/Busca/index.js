@@ -31,7 +31,7 @@ const index = ({navigation}) => {
         })
         
         if(resposta){
-            setLocal({local: resposta})
+            setLocal(resposta)
             setJaFavoritou(true)
             return true
         }
@@ -59,7 +59,7 @@ const index = ({navigation}) => {
                 }
 
                 if(data){
-                    setLocal({local: data})
+                    setLocal({local: data, coordenada: null})
                 }
             }else{
                 Alert.alert("Erro","Por favor, digite um CEP")
@@ -96,8 +96,9 @@ const index = ({navigation}) => {
                     </View>
                </TouchableOpacity>
 
+                {console.log("local", local)}
                 {
-                 local && <Informacoes local={local.local} jaFavoritou={jaFavoritou}/>
+                 local && <Informacoes local={local?.local} jaFavoritou={jaFavoritou}/>
                 }
 
                 {/* Componente Botão */}

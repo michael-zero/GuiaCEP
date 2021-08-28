@@ -1,5 +1,5 @@
 import React from 'react'
-import { Pressable, StyleSheet, Text, View } from 'react-native'
+import { Alert, Pressable, StyleSheet, Text, View } from 'react-native'
 
 //Cor
 import colors from '../configs/colors'
@@ -24,14 +24,14 @@ const Informacoes = ({local, jaFavoritou, containerStyle}) => {
         // Estou favoritando
         if(!favoritou){
             obterCoordenada(local.logradouro).then(res => {
-                // setCoordFavoritados([...coordFavoritados, res])
-                // setCoordenadaDoFavoritado(res)
+                if(!res){
+                    Alert.alert("Erro", "Não foi possível obter a coordenada, mas o local foi salvo!")
+                }
                 setCEPS([...CEPS, {local: local, coordenada: res}])
 
             })
         }else{ //Processo de desfavoritar e remover do contexto
             setCEPS([...CEPS.filter(lugar => lugar.local !== local)])
-            // setCoordFavoritados([...coordFavoritados.filter(coord => coord.latitude !== coordenadaDoFavoritado.latitude)])
         }
     }
 

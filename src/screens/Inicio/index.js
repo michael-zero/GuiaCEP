@@ -49,7 +49,6 @@ const index = ({navigation}) => {
     },[])
 
 
-    console.log(CEPS)
    
 
     return (
