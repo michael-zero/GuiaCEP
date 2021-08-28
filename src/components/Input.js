@@ -6,6 +6,7 @@ import { MaterialIcons } from '@expo/vector-icons';
 import colors from '../configs/colors';
 
 const Input = ({value, setCepBuscado, placeholder, setLocal, querIconeLimpeza=false, ...outrasProps}) => {
+
     return (
         <View style={styles.container}>
             <MaterialIcons name="search" size={28} color={"#252525"} />
@@ -32,14 +33,16 @@ const styles = StyleSheet.create({
     container: {
         width: '90%',
         height: 45,
-        borderWidth: 1,
         borderRadius: 7,
         alignItems: 'center',
         flexDirection: 'row',
         alignSelf: 'center',
         marginVertical: 16,
         paddingHorizontal: 6,
-        backgroundColor: 'white'
+        backgroundColor: 'white',
+
+        elevation: 35,
+        
     },
     input: {
         flex: 1,
