@@ -17,9 +17,8 @@ import colors from '../../configs/colors'
 const index = ({navigation}) => {
 
     const [cepBuscado, setCepBuscado] = React.useState(null)
-    const {CEPS, setCEPS} = React.useContext(DadosContext)
+    const {CEPS} = React.useContext(DadosContext)
     const [local, setLocal] = React.useState(null)
-    
     const [jaFavoritou, setJaFavoritou] = React.useState(null)
    
 
@@ -27,12 +26,12 @@ const index = ({navigation}) => {
         if(CEPS.length === 0) return false
 
         let resposta = CEPS.find(local => {
-            let limpaCEP = local.cep.replace("-","")
+            let limpaCEP = local.local.cep.replace("-","")
             return limpaCEP === cep
         })
         
         if(resposta){
-            setLocal(resposta)
+            setLocal({local: resposta})
             setJaFavoritou(true)
             return true
         }
@@ -60,7 +59,7 @@ const index = ({navigation}) => {
                 }
 
                 if(data){
-                    setLocal(data)
+                    setLocal({local: data})
                 }
             }else{
                 Alert.alert("Erro","Por favor, digite um CEP")
@@ -98,7 +97,7 @@ const index = ({navigation}) => {
                </TouchableOpacity>
 
                 {
-                 local && <Informacoes local={local} jaFavoritou={jaFavoritou}/>
+                 local && <Informacoes local={local.local} jaFavoritou={jaFavoritou}/>
                 }
 
                 {/* Componente Botão */}

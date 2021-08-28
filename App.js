@@ -19,9 +19,11 @@ export default function App() {
   const [coordFavoritados, setCoordFavoritados] = React.useState([])
   const [coordenadaDoFavoritado, setCoordenadaDoFavoritado] = React.useState(null)
 
+  const [regiaoFavorito, setRegiaoFavorito] = React.useState(null)
+
   
   return (
-  <DadosContext.Provider value={{CEPS, setCEPS, coordFavoritados, setCoordFavoritados, coordenadaDoFavoritado, setCoordenadaDoFavoritado}}>
+  <DadosContext.Provider value={{CEPS, setCEPS, coordFavoritados, setCoordFavoritados, coordenadaDoFavoritado, setCoordenadaDoFavoritado, regiaoFavorito, setRegiaoFavorito}}>
       <NavigationContainer>
         <TabScreen/>
       </NavigationContainer>

@@ -22,7 +22,7 @@ import Header from '../../components/Header'
 
 const index = ({navigation}) => {
 
-    const {CEPS, setCEPS,coordFavoritados, setCoordFavoritados} = React.useContext(DadosContext)
+    const {CEPS, regiaoFavorito, } = React.useContext(DadosContext)
 
     const [location, setLocation] = React.useState()
 
@@ -48,20 +48,27 @@ const index = ({navigation}) => {
         obterLocalizacao()
     },[])
 
-    // console.log(coordFavoritados);
+
+    console.log(CEPS)
+   
 
     return (
         <Screen style={{ backgroundColor: colors.azul}}>
 
             <Header titulo='Guia me' querIconeVoltar={false}/>
 
-            {location ? <MapView showsUserLocation={true} initialRegion={location} style={styles.map}>
+            {location ? <MapView showsUserLocation={true}
+            region={regiaoFavorito ? regiaoFavorito : location}
+            initialRegion={location} style={styles.map}>
 
                
 
-                 { coordFavoritados &&  coordFavoritados.map(coordenada => {
-                    console.log(coordenada)
-                 return <Marker pinColor={colors.azul} key={coordenada.latitude} coordinate={coordenada}/>}) 
+                 { CEPS &&  CEPS.map(obj => {
+                 if(obj.coordenada){
+                    return <Marker title={obj.local.logradouro} pinColor={colors.azul} key={obj.local.logradouro} coordinate={obj.coordenada}/>
+                 }
+                
+                }) 
                  }
             </MapView> : 
             

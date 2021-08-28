@@ -16,7 +16,7 @@ const Informacoes = ({local, jaFavoritou, containerStyle}) => {
 
     const [favoritou, setFavoritou] = React.useState(jaFavoritou)
 
-    const {CEPS, setCEPS,coordFavoritados, setCoordFavoritados, coordenadaDoFavoritado, setCoordenadaDoFavoritado} = React.useContext(DadosContext)
+    const {CEPS, setCEPS} = React.useContext(DadosContext)
 
     const agirSobreOLocal = () => {
         setFavoritou(!favoritou)
@@ -24,13 +24,14 @@ const Informacoes = ({local, jaFavoritou, containerStyle}) => {
         // Estou favoritando
         if(!favoritou){
             obterCoordenada(local.logradouro).then(res => {
-                setCoordFavoritados([...coordFavoritados, res])
-                setCoordenadaDoFavoritado(res)
+                // setCoordFavoritados([...coordFavoritados, res])
+                // setCoordenadaDoFavoritado(res)
+                setCEPS([...CEPS, {local: local, coordenada: res}])
+
             })
-            setCEPS([...CEPS, local])
         }else{ //Processo de desfavoritar e remover do contexto
-            setCEPS([...CEPS.filter(lugar => lugar !== local)])
-            setCoordFavoritados([...coordFavoritados.filter(coord => coord.latitude !== coordenadaDoFavoritado.latitude)])
+            setCEPS([...CEPS.filter(lugar => lugar.local !== local)])
+            // setCoordFavoritados([...coordFavoritados.filter(coord => coord.latitude !== coordenadaDoFavoritado.latitude)])
         }
     }
 

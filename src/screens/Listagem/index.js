@@ -1,5 +1,5 @@
 import React from 'react'
-import { ScrollView, StyleSheet, Text, View } from 'react-native'
+import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import Screen from '../../components/Screen'
 
 //Contexto
@@ -15,7 +15,12 @@ import { MaterialIcons } from '@expo/vector-icons';
 
 const index = ({navigation}) => {
 
-    const {CEPS, setCEPS, coordFavoritados, setCoordFavoritados} = React.useContext(DadosContext)
+    const {CEPS,setRegiaoFavorito} = React.useContext(DadosContext)
+    
+    const irParaMapaComOFavorito = (coordenada) => {
+        setRegiaoFavorito({...coordenada,latitudeDelta: 0.014, longitudeDelta: 0.014 })
+        navigation.navigate('Inicio')
+    }
 
     return (
         <Screen style={{backgroundColor: colors.azul}}>
@@ -24,7 +29,12 @@ const index = ({navigation}) => {
 
             <ScrollView>
             {
-                CEPS && CEPS.map(local => <Informacoes key={local.cep} jaFavoritou={true} local={local} containerStyle={{marginTop: 20, marginBottom: 10}}/>)
+                CEPS && CEPS.map(local => {
+                return <TouchableOpacity  key={local.local.cep}  onPress={() => irParaMapaComOFavorito(local.coordenada)}>
+                     <Informacoes jaFavoritou={true} local={local.local} containerStyle={{marginTop: 20, marginBottom: 10}}/>
+                </TouchableOpacity> 
+            
+            })
             }
            </ScrollView>
 
