@@ -78,7 +78,6 @@ const index = ({navigation}) => {
     }),[])
 
     React.useEffect(() => {
-    
     }, [local])
 
 
@@ -96,7 +95,7 @@ const index = ({navigation}) => {
                     </View>
                </TouchableOpacity>
 
-                {console.log("local", local)}
+               
                 {
                  local && <Informacoes local={local?.local} jaFavoritou={jaFavoritou}/>
                 }

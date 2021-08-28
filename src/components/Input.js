@@ -6,6 +6,7 @@ import { MaterialIcons } from '@expo/vector-icons';
 import colors from '../configs/colors';
 
 const Input = ({value, setCepBuscado, placeholder, setLocal, querIconeLimpeza=false, ...outrasProps}) => {
+
     return (
         <View style={styles.container}>
             <MaterialIcons name="search" size={28} color={"#252525"} />
