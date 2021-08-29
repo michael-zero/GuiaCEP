@@ -2,7 +2,7 @@ import React from 'react'
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import { MaterialIcons } from '@expo/vector-icons';
 import colors from '../configs/colors'
-
+import fonts from '../configs/fonts'
 
 const Header = ({ titulo, querIconeVoltar=true, navigation }) => {
     return (
@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     texto: {
-        // fontFamily: fonts.Montserrat_500Medium,
+        fontFamily: fonts.Montserrat_500Medium,
         color: "white",
         fontSize: 20,
     }

@@ -1,12 +1,13 @@
 import React from 'react'
 import {  StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import colors from '../configs/colors'
+import fonts from '../configs/fonts'
 
 const Botao = ({titulo, onPress, containerStyle, textStyle, ...outrasProps}) => {
     return (
         <TouchableOpacity onPress={onPress} style={[styles.container, containerStyle]}>
             <View>
-                <Text style={[{fontSize: 18, color: "#252525"}, textStyle]}>{titulo}</Text>
+                <Text style={[{fontSize: 18, color: "#252525", fontFamily: fonts.Montserrat_500Medium}, textStyle]}>{titulo}</Text>
             </View>
          </TouchableOpacity>
     )

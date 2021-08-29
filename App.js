@@ -3,8 +3,17 @@ import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { StyleSheet, Text, View } from 'react-native';
 
-//Componentes
-import Screen from './src/components/Screen';
+// Fontes
+import AppLoading from 'expo-app-loading';
+import {useFonts ,Montserrat_400Regular, Montserrat_100Thin_Italic, 
+  Montserrat_600SemiBold,
+  Montserrat_500Medium,
+  Montserrat_300Light,
+  Montserrat_700Bold, 
+  Montserrat_100Thin
+} from '@expo-google-fonts/montserrat'
+
+
 
 //Rotas
 import TabScreen from './src/routes/routes'
@@ -16,14 +25,24 @@ export default function App() {
   
   // Vetor de CEPS favoritados 
   const [CEPS, setCEPS] = React.useState([])
-  const [coordFavoritados, setCoordFavoritados] = React.useState([])
-  const [coordenadaDoFavoritado, setCoordenadaDoFavoritado] = React.useState(null)
-
   const [regiaoFavorito, setRegiaoFavorito] = React.useState(null)
 
+  let [fontsLoaded] = useFonts({
+    Montserrat_400Regular,
+    Montserrat_600SemiBold,
+    Montserrat_100Thin_Italic,
+    Montserrat_500Medium,
+    Montserrat_300Light,
+    Montserrat_700Bold,
+    Montserrat_100Thin
+  }) 
+
+  if(!fontsLoaded){
+    return <AppLoading/>
+  }
   
   return (
-  <DadosContext.Provider value={{CEPS, setCEPS, coordFavoritados, setCoordFavoritados, coordenadaDoFavoritado, setCoordenadaDoFavoritado, regiaoFavorito, setRegiaoFavorito}}>
+  <DadosContext.Provider value={{CEPS, setCEPS,regiaoFavorito, setRegiaoFavorito}}>
       <NavigationContainer>
         <TabScreen/>
       </NavigationContainer>

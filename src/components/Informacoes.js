@@ -11,6 +11,7 @@ import { AntDesign } from '@expo/vector-icons';
 import {DadosContext} from '../DadosContext'
 
 import { obterCoordenada } from '../configs/permissoes';
+import fonts from '../configs/fonts';
 
 const Informacoes = ({local, jaFavoritou, containerStyle}) => {
 
@@ -102,7 +103,7 @@ const Informacoes = ({local, jaFavoritou, containerStyle}) => {
                                 </View>
 
                                 <View style={[styles.subContainer]}>
-                                    <Text style={styles.titulo}>{local.localidade}</Text>
+                                    <Text style={styles.texto}>{local.localidade}</Text>
                                 </View>
                                 <View style={[styles.subContainer,{backgroundColor: colors.azulClaro}]}>
                                     <Text style={styles.texto}>{local.bairro}</Text>
@@ -128,12 +129,14 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
     },
     titulo: {
-        fontSize: 18,
+        fontSize: 16,
         color: 'black',
+        fontFamily: fonts.Montserrat_500Medium
     },
     texto: {
         fontSize: 16,
-        color: 'black'
+        color: 'black',
+        fontFamily: fonts.texto
     },
     subContainer: {
         flexDirection: 'row', 
