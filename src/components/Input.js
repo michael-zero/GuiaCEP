@@ -16,7 +16,7 @@ const Input = ({value, setCepBuscado, placeholder, setLocal, querIconeLimpeza=fa
              onChangeText={cep => setCepBuscado(cep)}
              placeholderTextColor={colors.medium} style={styles.input} placeholder={placeholder} value={value}/>
             
-            { (querIconeLimpeza && (value !== "" || value === null)) && <TouchableOpacity onPress={() =>{ 
+            { (querIconeLimpeza && (value !== " " || value !== null)) && <TouchableOpacity onPress={() =>{ 
                 setCepBuscado("")
                 setLocal(null)
                 }}>

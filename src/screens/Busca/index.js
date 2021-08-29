@@ -12,6 +12,7 @@ import Header from '../../components/Header'
 //Contexto
 import { DadosContext } from '../../DadosContext'
 import colors from '../../configs/colors'
+import fonts from '../../configs/fonts'
 
 
 const index = ({navigation}) => {
@@ -96,7 +97,7 @@ const index = ({navigation}) => {
                {/* Botão do favoritado */}
                <TouchableOpacity onPress={() => navigation.navigate("Listagem")}>
                     <View style={{ marginHorizontal: 22, height: 35, justifyContent: 'center'}}>
-                        <Text style={{fontSize: 16, color: "#252525"}}>Favoritados({CEPS.length})</Text>
+                        <Text style={{fontSize: 16, color: "#252525", fontFamily: fonts.Montserrat_500Medium}}>Favoritados({CEPS.length})</Text>
                     </View>
                </TouchableOpacity>
 
