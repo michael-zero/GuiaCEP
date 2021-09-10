@@ -27,25 +27,32 @@ const index = ({navigation}) => {
     const [location, setLocation] = React.useState()
 
     // Função para pedir ao usuário permissão para acessar a localização
-    const obterLocalizacao = async () => {
+    const obterPermissao = async () => {
         try {
-            const { granted } = await Location.requestForegroundPermissionsAsync();
+            const { status } = await Location.requestForegroundPermissionsAsync();
             
-            if (!granted) {
+            if (status !== 'granted') {
                 alert('Precisamos da sua localização!');
                 return
             }
-
-            const { coords: { latitude, longitude } } = await Location.getCurrentPositionAsync()
-            setLocation({ latitude, longitude, latitudeDelta: 0.014, longitudeDelta: 0.014 })
         } catch (e) {
            alert(e.message)
         }
 
     }
 
+    const obterLocalizacao = async () => {
+        try {
+            const {coords} = await Location.getCurrentPositionAsync({accuracy: 1})
+            setLocation({latitude: coords.latitude, longitude: coords.longitude, latitudeDelta: 0.014, longitudeDelta: 0.014})
+        } catch (error) {
+            console.log(error.message)
+        }
+      
+    }
+
     React.useEffect(() => {
-        obterLocalizacao()
+       obterPermissao().then(obterLocalizacao()).catch(e => console.log(e.message))
     },[])
 
 
