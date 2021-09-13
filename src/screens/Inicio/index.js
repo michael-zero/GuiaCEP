@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet, Text, View, Dimensions, Button, TouchableOpacity, ActivityIndicator} from 'react-native'
+import { StyleSheet, Text, View, Dimensions, Button, TouchableOpacity, Alert, ActivityIndicator} from 'react-native'
 
 //Componentes
 import Screen from '../../components/Screen'
@@ -24,17 +24,26 @@ const index = ({navigation}) => {
 
     const {CEPS, regiaoFavorito, } = React.useContext(DadosContext)
 
-    const [location, setLocation] = React.useState()
+    const [location, setLocation] = React.useState({latitude: -5.0985376,longitude: -42.8324029, latitudeDelta: 0.014, longitudeDelta: 0.014 })
 
     // Função para pedir ao usuário permissão para acessar a localização
     const obterPermissao = async () => {
         try {
+
+            const habilitado = await Location.hasServicesEnabledAsync()
+
+            if(!habilitado){
+                Alert.alert("GPS","Ative sua localização😎")
+                return 
+            }
+
             const { status } = await Location.requestForegroundPermissionsAsync();
             
             if (status !== 'granted') {
                 alert('Precisamos da sua localização!');
                 return
             }
+
         } catch (e) {
            alert(e.message)
         }
@@ -43,10 +52,17 @@ const index = ({navigation}) => {
 
     const obterLocalizacao = async () => {
         try {
-            const {coords} = await Location.getCurrentPositionAsync({accuracy: 1})
-            setLocation({latitude: coords.latitude, longitude: coords.longitude, latitudeDelta: 0.014, longitudeDelta: 0.014})
+            await Location.getLastKnownPositionAsync({accuracy: 1,  enableHighAccuracy: false}).then((res) => {
+               
+                if(res){
+                    const {coords} = res
+                    setLocation({latitude: coords.latitude, longitude: coords.longitude, latitudeDelta: 0.014, longitudeDelta: 0.014})
+                }else{
+                    return
+                }
+            })
         } catch (error) {
-            console.log(error.message)
+            console.log("error = ", error.message)
         }
       
     }
@@ -71,6 +87,7 @@ const index = ({navigation}) => {
 
                  { CEPS &&  CEPS.map(obj => {
                  if(obj.coordenada){
+                     console.log(obj.coordenada)
                     return <Marker title={obj.local.logradouro} pinColor={colors.azul} key={obj.local.logradouro} coordinate={obj.coordenada}/>
                  }
                 

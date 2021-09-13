@@ -2,7 +2,7 @@
   "expo": {
     "name": "guia-cep",
     "slug": "guia-cep",
-    "version": "1.0.0",
+    "version": "2.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {
@@ -20,11 +20,18 @@
       "supportsTablet": true
     },
     "android": {
-      "permissions": ["LOCATION"],
+      "package": "com.infinitecode.guiacep",
+      "config":{
+        "googleMaps": {
+          "apiKey": "AIzaSyCIpHCJGrAzTAhVgIFQs1q7NmThkp66WHQ"
+        }
+      },
+      "permissions": ["LOCATION","CAMERA", "READ_CONTACTS","READ_PHONE_STATE" ],
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#FFFFFF"
-      }
+        "backgroundColor": "#CEDEE5"
+      },
+      "versionCode": 2
     },
     "web": {
       "favicon": "./assets/favicon.png"
