@@ -23,7 +23,7 @@
       "package": "com.infinitecode.guiacep",
       "config":{
         "googleMaps": {
-          "apiKey": "AIzaSyCIpHCJGrAzTAhVgIFQs1q7NmThkp66WHQ"
+          "apiKey": "COLE SUA CHAVE AQUI"
         }
       },
       "permissions": ["LOCATION","CAMERA", "READ_CONTACTS","READ_PHONE_STATE" ],
